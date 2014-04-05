@@ -12,7 +12,7 @@ import android.view.SurfaceView;
 
 import com.rnd.compass.util.Util;
 
-public class CompassRnDView extends SurfaceView implements SurfaceHolder.Callback
+public class CompassRnDView_1 extends SurfaceView implements SurfaceHolder.Callback
 {
 
     private CompassManagerRnD compassManagerRnD;
@@ -24,8 +24,6 @@ public class CompassRnDView extends SurfaceView implements SurfaceHolder.Callbac
     private int centerX;
     private int centerY;
     private boolean isRunning;
-    
-    private static final int REQUIRED_BEARING_CHANGE = 5;
 
     private static final int MARKER_LENGHT_LEVEL_1 = 7;// in dp
     private static final int MARKER_LENGHT_LEVEL_2 = 9;// in dp
@@ -73,7 +71,7 @@ public class CompassRnDView extends SurfaceView implements SurfaceHolder.Callbac
     private static final int DIRECTIONS_REDIUS_MARGIN = 5;// in dp
     private static final int DIRECTIONS_TEXT_STROKE_WIDTH = 5;
 
-    public CompassRnDView(Context context,CompassManagerRnD compassManagerRnD )
+    public CompassRnDView_1(Context context,CompassManagerRnD compassManagerRnD )
     {
 	super(context);
 	this.context = context;
@@ -138,7 +136,7 @@ public class CompassRnDView extends SurfaceView implements SurfaceHolder.Callbac
 	{
 	    
 	    double angle = HALF_PI - i * MULTIPLIER_LEVEL_1;
-	    angle = + compassManagerRnD.getValuesMagneticField()[0];
+	    //angle = + compassManagerRnD.getValuesMagneticField()[0];
 	    float x = (float) Math.cos(angle);
 	    float y = (float) Math.sin(angle);
 	    canvas.drawLine(centerX + mInternalRadiusLevel_1 * x, centerY - mInternalRadiusLevel_1 * y, centerX + mExternalRadiusLevel_1 * x, centerY - mExternalRadiusLevel_1 * y, paintLevel_1);
@@ -221,8 +219,8 @@ public class CompassRnDView extends SurfaceView implements SurfaceHolder.Callbac
 	private Canvas mCanvas;
 	private SurfaceHolder surfaceHolder;
 	private Context context;
-	private CompassRnDView compassRnDView;
-	public DrawingRunnable(SurfaceHolder surfaceHolder, Context context, CompassRnDView compassRnDView)
+	private CompassRnDView_1 compassRnDView;
+	public DrawingRunnable(SurfaceHolder surfaceHolder, Context context, CompassRnDView_1 compassRnDView)
 	{
 	    this.context = context;
 	    this.surfaceHolder = surfaceHolder;
@@ -235,9 +233,7 @@ public class CompassRnDView extends SurfaceView implements SurfaceHolder.Callbac
 	    while (isRunning())
 
 	    {
-		
-		
-		
+
 		mCanvas = surfaceHolder.lockCanvas();
 
 		if (mCanvas != null)
@@ -255,18 +251,6 @@ public class CompassRnDView extends SurfaceView implements SurfaceHolder.Callbac
 	}
     }
     
-    
-    private void update()
-    {
-	updateBearing();
-	//updateCompass();
-	//updateAccuracy();
-    }
-    
-    
-    private void updateBearing(){
-	
-    }
     
     public void setRunning(boolean isRunning)
     {
@@ -288,8 +272,8 @@ public class CompassRnDView extends SurfaceView implements SurfaceHolder.Callbac
 	if(drawingThread == null || !drawingThread.isAlive())
 	{
 	    drawingThread = new Thread(drawingRunnable);
-	    setRunning(true);
 	    drawingThread.start();
+	    setRunning(true);
 	}
 	
     }

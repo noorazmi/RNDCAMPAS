@@ -3,10 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CompassRnDActivity" 
-    android:gravity="center">
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:id="@+id/compass_view_holder">
 
-    <com.rnd.compass.CompassRnDView
+   <!--  <com.rnd.compass.CompassRnDView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" /> -->
 
 </LinearLayout>
